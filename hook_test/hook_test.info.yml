@@ -1,0 +1,5 @@
+name: Hook Test
+type: module
+description: Defines a custom block.
+core: 8.x
+package: Bootcamp

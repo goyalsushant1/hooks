@@ -1,0 +1,52 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_help().
+ */
+function hook_test_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the custom_hooks_demo module.
+    case 'help.page.hook_test':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Demonstration of hooks') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hook_test_user_login($account) {
+    // drupal_set_message('Hi %name! Welcome to our website');
+  drupal_set_message(t('Hi %name! Welcome to our website', ['%name' => $account->getDisplayName()]));
+//   return new RedirectResponse(\Drupal::url('<front>', [], ['absolute' => TRUE]));
+}
+/**
+ * Implements hook_page_top ().
+ */
+function hook_test_page_top(array &$page_top) {
+    $page_top['hook_test'] = [
+    '#markup' => 'This is the top.',
+    ];
+}
+
+function hook_test_page_bottom(array &$page_top) {
+    $page_top['hook_test'] = [
+    '#markup' => 'This is the bottom.',
+    ];
+}
+
+function hook_test_form_alter(&$form,$form_state,$form_id) {
+  
+  if($form_id=='custom_form')
+  {
+    //kint($form);
+    $form['name']['#required'] = FALSE;
+   }
+}
