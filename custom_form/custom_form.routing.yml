@@ -1,0 +1,7 @@
+amazing_forms_contribute:
+  path: '/contribute'
+  defaults:
+    _form: '\Drupal\custom_form\Form\ContributeForm'
+    _title: 'Custom Form'
+  requirements:
+    _permission: 'access content'
